@@ -84,6 +84,11 @@ app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 
+// ✅ Home route redirect
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
+
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "page not found!" } = err;
   res.status(statusCode).render("error.ejs", { message });
